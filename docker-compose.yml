@@ -1,19 +1,23 @@
 
-version: "3"
+version: "3.8"
 services:
   scf-backend:
     container_name: scf-backend
     build:
       context: .
-      dockerfile: .Dockerfile
+      dockerfile: Dockerfile
+      target: base
+    volumes:
+      - ./src:/home/node/app/src
+      - ./nodemon.json:/home/node/app/nodemon.json
     depends_on:
       - postgres
     environment:
       DATABASE_URL: postgres://postgres:newPassword@postgres:5432/scf-backend
-      NODE_ENV: development
       PORT: 4000
     ports:
       - "4000:4000"
+    command: npm run dev
   postgres:
     container_name: postgres
     image: postgres:14.1

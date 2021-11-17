@@ -4,7 +4,6 @@ import pool from '../dbconfig/dbconnector';
 class TodosController {
 
     public async get(req :Request, res :Response) {
-        console.log('called')
         try {
             const client = await pool.connect();
             const sql = 'SELECT * FROM todos';
