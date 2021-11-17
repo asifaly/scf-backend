@@ -13,7 +13,7 @@ services:
     depends_on:
       - postgres
     environment:
-      DATABASE_URL: postgres://postgres:newPassword@postgres:5432/scf-backend
+      DATABASE_URL: postgres://postgres:secret@postgres:5432/scf-backend
       PORT: 4000
     ports:
       - "4000:4000"
@@ -24,27 +24,27 @@ services:
     ports:
       - "5432:5432"
     volumes: 
-      - ./postgresdata:/var/lib/postgresql/data
+      - ./db_data:/var/lib/postgresql/data
       - ./src/migrations/dbinit.sql:/docker-entrypoint-initdb.d/dbinit.sql
     restart: always
     environment:
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: newPassword
+      POSTGRES_PASSWORD: secret
       POSTGRES_DB: scf-backend
   pgadmin:
     container_name: pgadmin
     image: dpage/pgadmin4
     restart: always
     environment:
-      PGADMIN_DEFAULT_EMAIL: admin@linuxhint.com
+      PGADMIN_DEFAULT_EMAIL: asif@venzo.com
       PGADMIN_DEFAULT_PASSWORD: secret
       PGADMIN_LISTEN_PORT: 80
     ports:
       - "8080:80"
     volumes:
-      - pgadmin-data:/var/lib/pgadmin
+      - pgadmin_data:/var/lib/pgadmin
     depends_on:
       - postgres
 volumes:
-    db-data:
-    pgadmin-data:
+    db_data:
+    pgadmin_data:
