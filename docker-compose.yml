@@ -13,7 +13,7 @@ services:
     depends_on:
       - postgres
     environment:
-      DATABASE_URL: postgres://postgres:secret@postgres:5432/scf-backend
+      DATABASE_URL: postgres://postgres:secret@host.docker.internal:5432/scf-backend
       PORT: 4000
     ports:
       - "4000:4000"
