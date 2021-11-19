@@ -2,7 +2,7 @@
 import bodyParser from 'body-parser';
 import express from 'express';
 import pool from './dbconfig/dbconnector';
-import todosRouter from './routers/TodosRouter';
+import apiRouter from './routers/ApiRouter';
 
 class Server {
     private app;
@@ -27,7 +27,7 @@ class Server {
     }
 
     private routerConfig() {
-        this.app.use('/todos', todosRouter);
+        this.app.use('/api', apiRouter);
     }
 
     public start = (port: number) => {
