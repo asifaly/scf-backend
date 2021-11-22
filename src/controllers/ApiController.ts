@@ -24,7 +24,8 @@ class ApiController {
           const table = req.params.tablename
           const client = await pool.connect();
           const { name, city, country_code, base_currency } = req.body;
-          const query = `INSERT INTO ${table}(name, city, country_code, base_currency) VALUES('${name}','${city}','${country_code}','${base_currency}') RETURNING *`;
+          const query = `INSERT INTO ${table}(name, city, country_code, base_currency) 
+          VALUES('${name}','${city}','${country_code}','${base_currency}') RETURNING *`;
         
           const { rows } = await client.query(query)
           const data = rows
@@ -45,6 +46,7 @@ class ApiController {
           const id = req.params.recordid
           const client = await pool.connect();
           const select = `SELECT * FROM ${table} WHERE id = ${id}`
+           /* eslint no-var: 0 */
           var {rows} = await client.query(select)
           const { name = rows[0].name, city = rows[0].city, country_code = rows[0].country_code, base_currency = rows[0].base_currency } = req.body;
           const updatequery = `UPDATE ${table}
@@ -52,6 +54,7 @@ class ApiController {
                         WHERE id = ${id}`;
         
           await client.query(updatequery)
+           /* eslint no-var: 0 */
           var {rows} = await client.query(select) 
           console.log(rows)
           client.release();
@@ -62,7 +65,7 @@ class ApiController {
         } catch (error) {
             res.status(400).send(error)
         }
-    };
+    }
 }
 
 export default ApiController;
