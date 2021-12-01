@@ -1,5 +1,3 @@
-import { country_codes } from '../enums/countries'
-import { currency_codes } from '../enums/currencies'
 
 const schema = {
   'required': [
@@ -15,25 +13,14 @@ const schema = {
       },
       'name': {
           '$id': '#/properties/name',
-          'type': 'string'
-      },
-      'city': {
-          '$id': '#/properties/city',
-          'type': 'string'
-      },
-      'country_code': {
-          '$id': '#/properties/country_code',
           'type': 'string',
-          'enum': country_codes
+          'maxLength': 10
       },
-      'base_currency': {
-          '$id': '#/properties/base_currency',
-          'type': 'string',
-          'enum': currency_codes
-      }
+      'address': { '$ref': '/schemas/address' }
   },
-  '$id': 'http://example.org/root.json#',
+  '$id': '/schemas/banks',
   'type': 'object',
+  'title': 'Bank',
   'definitions': {},
   '$schema': 'http://json-schema.org/draft-07/schema#'
 }

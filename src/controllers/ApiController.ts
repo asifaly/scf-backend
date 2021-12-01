@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import pool from '../dbconfig/dbconnector';
+import pool from '../config/dbconnector';
 
 class ApiController {
 

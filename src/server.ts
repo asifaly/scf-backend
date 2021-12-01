@@ -1,7 +1,7 @@
 
 import bodyParser from 'body-parser';
 import express from 'express';
-import pool from './dbconfig/dbconnector';
+import pool from './config/dbconnector';
 import apiRouter from './routers/ApiRouter';
 
 class Server {
